@@ -1,0 +1,14 @@
+include mixins
+extends layout
+
+block content
+  div
+    div
+    +nav()
+      +nav_item( "/", "active" ) Home
+      +nav_item( "manage" ) Manage DNS
+      +nav_item( "login" ) Login
+    +panel("DNS Manager", "success") Welcome to DNS Manager!
+      
+script(src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
+script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js')

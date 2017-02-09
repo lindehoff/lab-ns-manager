@@ -1,0 +1,30 @@
+include mixins
+extends layout
+
+block content
+  div
+    div
+    +nav()
+      +nav_item( "/" ) Home
+      +nav_item( "manage", "active" ) Manage DNS
+      +nav_item( "login" ) Login
+    .row
+      div(class="col-xs-1 col-md-2") &nbsp;
+      div(class="col-xs-10 col-md-8") 
+        +panel("DNS Manager", style)
+          p You can setup the name servers for your domain: #{domian}
+          form(method='post')
+            p
+              label(for='ns1') Name server 1 &nbsp;
+              input(type='text', name='ns1', value=ns1)
+            p
+              label(for='ns2') Name server 2 &nbsp;
+              input(type='text', name='ns2' value=ns2)
+            input(type='submit')
+          - each message in error
+              h4(style="color: red;") Error
+              div !{message} 
+        div(class="col-xs-1 col-md-2") &nbsp;
+      
+script(src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
+script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js')

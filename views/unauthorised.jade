@@ -1,0 +1,16 @@
+include mixins
+extends layout
+
+block content
+  div
+    div
+    +nav()
+      +nav_item( "/" ) Home
+      +nav_item( "manage" ) Manage DNS
+      +nav_item( "login" ) Login
+    +panel("Unathorised", "danger") 
+      p You're unathorised to view this page.
+      p Please <a href="/login">login</a> to continue
+      
+script(src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
+script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js')
