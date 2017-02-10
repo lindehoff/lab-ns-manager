@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const session = require('express-session')
 const flash = require('connect-flash');
 const settings = require('./config/settings');
-const port = 8999;
+
 
 let app = express();
 
@@ -40,5 +40,5 @@ app.use(function(req, res, next) {
 });
 
 
-let server = app.listen(port, '127.0.0.1');
-console.log('Node listening on port %s', port);
+let server = app.listen(settings.serverPort, settings.serverIP);
+console.log('Node listening on http://%s:%s',  settings.serverIP,  settings.serverPort);
