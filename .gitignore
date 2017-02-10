@@ -103,5 +103,4 @@ jspm_packages
 # End of https://www.gitignore.io/api/macos,node,linux
 
 #app
-users.json
-db.devopslab.xyz2
+config/

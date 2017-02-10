@@ -7,7 +7,10 @@ block content
     +nav()
       +nav_item( "/" ) Home
       +nav_item( "manage", "active" ) Manage DNS
-      +nav_item( "login" ) Login
+      if authenticated
+        +nav_item( "/logout" ) Logout (#{userName})
+      else
+        +nav_item( "/login" ) Login
     .row
       div(class="col-xs-1 col-md-2") &nbsp;
       div(class="col-xs-10 col-md-8") 
@@ -21,9 +24,21 @@ block content
               label(for='ns2') Name server 2 &nbsp;
               input(type='text', name='ns2' value=ns2)
             input(type='submit')
-          - each message in error
-              h4(style="color: red;") Error
-              div !{message} 
+          if error.length > 0
+            h4(style="color: red;") Error
+            ul
+            - each message in error
+                li !{message} 
+          if style === "success"
+            h4(style="color: green;") Changes Saved!
+            p Your nameservers have been register in our nameserver, you should be able to query your domain #{domian} within 5 minutes.
+              if soa.ttl > 300 || soa.minimum > 300
+                +panel("Caution", "warning") You might want to change your TTL or/and Negative Cache TTL, under developent it's not recommended to have these higher then 300.
+                  p Your settings are:
+                  ul
+                    li TTL: #{soa.ttl}
+                    li Negative Cache TTL: #{soa.minimum}
+              
         div(class="col-xs-1 col-md-2") &nbsp;
       
 script(src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')

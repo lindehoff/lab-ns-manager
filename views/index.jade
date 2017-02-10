@@ -6,9 +6,16 @@ block content
     div
     +nav()
       +nav_item( "/", "active" ) Home
-      +nav_item( "manage" ) Manage DNS
-      +nav_item( "login" ) Login
-    +panel("DNS Manager", "success") Welcome to DNS Manager!
+      if authenticated
+        +nav_item( "/manage" ) Manage DNS
+        +nav_item( "/logout" ) Logout (#{userName})
+      else
+        +nav_item( "/login" ) Login
+    .row
+      div(class="col-xs-1 col-md-2") &nbsp;
+      div(class="col-xs-10 col-md-8") 
+        +panel("DNS Manager", "success") Welcome #{userName} to DNS Manager!
+      div(class="col-xs-1 col-md-2") &nbsp;
       
 script(src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
 script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js')

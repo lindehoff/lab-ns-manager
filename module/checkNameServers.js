@@ -2,7 +2,8 @@
 const exec = require('child_process').exec;
 const namedRegexp = require("named-js-regexp");
 const util = require('util');
-var re=namedRegexp("ttl = (?<ttl>\\d+)[\\s\\S]*serial = (?<serial>\\d+)[\\s\\S]*refresh = (?<refresh>\\d+)[\\s\\S]*retry = (?<retry>\\d+)[\\s\\S]*expire = (?<expire>\\d+)[\\s\\S]*minimum = (?<minimum>\\d+)");
+const re=namedRegexp("ttl = (?<ttl>\\d+)[\\s\\S]*serial = (?<serial>\\d+)[\\s\\S]*refresh = (?<refresh>\\d+)[\\s\\S]*retry = (?<retry>\\d+)[\\s\\S]*expire = (?<expire>\\d+)[\\s\\S]*minimum = (?<minimum>\\d+)");
+
 function isEquivalent(a, b) {
     // Create arrays of property names
     var aProps = Object.getOwnPropertyNames(a);

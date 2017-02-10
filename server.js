@@ -1,12 +1,12 @@
-var express = require('express');
-var cookieParser = require('cookie-parser')
-var bodyParser = require('body-parser')
-var session = require('express-session')
-var flash = require('connect-flash');
-const users = require('./users');
-var port = 8999;
+const express = require('express');
+const cookieParser = require('cookie-parser')
+const bodyParser = require('body-parser')
+const session = require('express-session')
+const flash = require('connect-flash');
+const settings = require('./config/settings');
+const port = 8999;
 
-var app = express();
+let app = express();
 
 function checkAuth (req, res, next) {
 	if (req.url === '/manage' && (!req.session || !req.session.authenticated)) {
@@ -16,11 +16,11 @@ function checkAuth (req, res, next) {
 
 	next();
 }
-app.locals.users = users;
+app.locals.settings = settings;
 app.use(cookieParser())
 app.set('trust proxy', 1) // trust first proxy
 app.use(session({
-  secret: 'keyboard cat',
+  secret: settings.sessionSecret,
   resave: false,
   saveUninitialized: true
 }))
@@ -34,11 +34,11 @@ app.set('view options', { layout: false });
 require('./lib/routes.js')(app);
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
-    var err = new Error('Not Found');
+    let err = new Error('Not Found');
     err.status = 404;
     next(err);
 });
 
 
-var server = app.listen(port, '127.0.0.1');
+let server = app.listen(port, '127.0.0.1');
 console.log('Node listening on port %s', port);
