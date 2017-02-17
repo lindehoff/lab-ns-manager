@@ -4,7 +4,7 @@ extends layout
 block content
   div
     div
-    +nav()
+    +nav("","navbar")
       +nav_item( "/" ) Home
       +nav_item( "login", "active" ) Login
     .row
@@ -23,6 +23,3 @@ block content
           - each message in flash
             h4(style="color: red;") #{message}
       div(class="col-xs-1 col-md-2") &nbsp;
-      
-script(src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
-script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js')

@@ -4,7 +4,7 @@ extends layout
 block content
   div
     div
-    +nav()
+    +nav("","navbar")
       +nav_item( "/" ) Home
       +nav_item( "login" ) Login
     .row
@@ -14,6 +14,3 @@ block content
           p You're unathorised to view this page.
           p Please <a href="/login">login</a> to continue
       div(class="col-xs-1 col-md-2") &nbsp;
-      
-script(src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
-script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js')

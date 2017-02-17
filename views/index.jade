@@ -4,7 +4,7 @@ extends layout
 block content
   div
     div
-    +nav()
+    +nav("","navbar")
       +nav_item( "/", "active" ) Home
       if authenticated
         +nav_item( "/manage" ) Manage DNS
@@ -16,6 +16,3 @@ block content
       div(class="col-xs-10 col-md-8") 
         +panel("DNS Manager", "success") Welcome #{userName} to DNS Manager!
       div(class="col-xs-1 col-md-2") &nbsp;
-      
-script(src='//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
-script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js')
