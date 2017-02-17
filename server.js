@@ -9,8 +9,10 @@ const settings = require('./config/settings');
 let app = express();
 
 function checkAuth (req, res, next) {
+	let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 	if (req.url === '/manage' && (!req.session || !req.session.authenticated)) {
 		res.render('unauthorised', { status: 403 });
+		console.log("[%s] Unauthorised", ip)
 		return;
 	}
 
@@ -30,15 +32,7 @@ app.use(checkAuth);
 app.set('view engine', 'jade');
 app.set('view options', { layout: false });
 
-
 require('./lib/routes.js')(app);
-/// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-    let err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-});
-
 
 let server = app.listen(settings.serverPort, settings.serverIP);
 console.log('Node listening on http://%s:%s',  settings.serverIP,  settings.serverPort);
